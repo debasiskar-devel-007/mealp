@@ -2,6 +2,7 @@ import {Component} from '@angular/core';
 import {Page, Platform} from 'ionic-angular';
 import {SignUpPage} from '../signup/signup'
 import {Facebook} from 'ionic-native'
+import {isArray} from "rxjs/util/isArray";
 
 
 @Component({
@@ -21,13 +22,51 @@ export class HelloIonicPage {
     alert(90);
 
     this.platform.ready().then(() => {
-      Facebook.login(["email"]).then((result) => {
-        console.log(result)
-        alert(result)
-      })
+
+      Facebook.login(["email","public_profile"]).then((result) => {
+        console.log(result);
+        alert(result);
+
+        Facebook.api('/' + result.authResponse.userID + '?fields=id,name,gender,email,first_name,last_name',[]).then((result1) => {
+          console.log(result1);
+          alert(result1);
+          var x;
+          for (x in result1){
+            alert(x+'---'+result1[x]);
+            if(isArray(result1[x])){
+              let y;
+              for(y in result1[x]){
+                alert(y+''+result1[x][y]);
+              }
+            }
+          }
+
+
+        });
+
+
+
+      });
+
+
+
+      /*Facebook.api('/me','').then((result) => {
+        console.log(result);
+        alert(result);
+        var x;
+        for (x in result['authResponse']){
+          alert(x+'---'+result['authResponse'][x]);
+          if(isArray(result['authResponse'][x])){
+            let y;
+            for(y in result[x]){
+              alert(y+''+result[x][y]);
+            }
+          }
+        }
+      });*/
+
+
     });
   }
-
-
 
 }
