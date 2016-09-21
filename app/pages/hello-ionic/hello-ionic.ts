@@ -3,6 +3,7 @@ import {Page, Platform} from 'ionic-angular';
 import {SignUpPage} from '../signup/signup'
 import {Facebook} from 'ionic-native'
 import {isArray} from "rxjs/util/isArray";
+import { Device } from 'ionic-native';
 
 
 @Component({
@@ -67,6 +68,14 @@ export class HelloIonicPage {
 
 
     });
+  }
+  deviceinfo(){
+
+    alert(Device.device);
+    let x;
+    for (x in Device.device){
+      alert(x+'--'+Device.device[x]);
+    }
   }
 
 }
