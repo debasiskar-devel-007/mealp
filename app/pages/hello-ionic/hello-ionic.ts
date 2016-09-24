@@ -1,6 +1,7 @@
 import {Component} from '@angular/core';
 import {Page, Platform} from 'ionic-angular';
 import {SignUpPage} from '../signup/signup'
+import {FoodsPage} from '../foods/foods'
 import {Facebook} from 'ionic-native'
 import {isArray} from "rxjs/util/isArray";
 import { Device } from 'ionic-native';
@@ -12,6 +13,7 @@ import { Device } from 'ionic-native';
 })
 export class HelloIonicPage {
   signupPage=SignUpPage;
+  foodPage=FoodsPage;
   private  platform;
 
   constructor(platform:Platform) {

@@ -10,12 +10,17 @@
 
 <ion-content padding class="getting-started">
 
+  <h3>Welcome to your first Ionic app! ????????????<!----></h3>
+
+  <p>
+    This starter project is our way of helping you get a functional app running in record time.
+  </p>
+  <p>
+    Follow along on the tutorial section of the Ionic docs!
+  </p>
 
 
-
-
-
-  <form novalidate [formGroup]="loginForm" >
+  <form novalidate [formGroup]="loginForm" (ngSubmit)="doSubmit(loginForm.value)">
     <input [formControl]="loginForm.controls['fullname']" type="text" placeholder="name" class="form-control UserLogIn_email">
     <div *ngIf ="loginForm.controls['fullname'].touched">
       <div *ngIf ="!loginForm.controls['fullname'].valid" class = "alert alert-danger">
@@ -44,28 +49,9 @@
       <div *ngIf ="!loginForm.controls['confpassword'].valid" class = "alert alert-danger">
         <strong>Confirm password  is required</strong>
       </div>
-      <div *ngIf ="loginForm.hasError('mismatchedPasswords') && loginForm.controls['confpassword'].valid " class = "alert alert-danger">
-        <strong>Passwords must match</strong>
-      </div>
     </div>
-
-    <ion-item class="dob" >
-      <ion-label>Date</ion-label>
-      <ion-datetime disabled="false" displayFormat="MM/DD/YYYY" [formControl]="loginForm.controls['dob']" #dob></ion-datetime>
-    </ion-item>
-
-    <div (click)="dob.click()">date</div>
-
-
-
-    <button type="submit" class="loginbtn" (click)="doSubmit(loginForm.value)" >Sign Up</button>
+    <button type="submit" class="loginbtn" >Login</button>
   </form>
-
-
-
-
-
-
 
 
 
