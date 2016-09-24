@@ -15,20 +15,29 @@ export class SignUpPage {
   private loginForm:FormGroup;
   private nav:NavController;
   private dob:any;
+  private unittext:any;
 
   constructor(fb: FormBuilder,public navCtrl: NavController,private _http: Http) {
+    this.unittext={
+        title: 'Weight Units',
+        subTitle: 'Select your Weight Units'
+  };
     this.loginForm = fb.group({
       fullname: ["", Validators.required],
       email: ["", SignUpPage.validateEmail],
       password: ["", Validators.required],
-      dob: ["", Validators.required],
+      heightft: ["", Validators.required],
+      heightinch: ["0", Validators.required],
+      weight: ["", Validators.required],
+      weightunit: ["lb", Validators.required],
+      dob: ["2009-01-01", Validators.required],
       confpassword: ["", Validators.required]
     }, {validator: this.matchingPasswords('password', 'confpassword')});
   }
 
   doSubmit(event){
     let x:any;
-    //console.log(this.loginForm.value.term);
+    console.log(this.loginForm.value.dob);
 
     for(x in this.loginForm.controls){
       this.loginForm.controls[x].markAsTouched();

@@ -51,10 +51,32 @@
 
     <ion-item class="dob" >
       <ion-label>Date</ion-label>
-      <ion-datetime disabled="false" displayFormat="MM/DD/YYYY" [formControl]="loginForm.controls['dob']" #dob></ion-datetime>
+      <ion-datetime min="1944-01-01" max="2009-12-01" disabled="false" displayFormat="MM/DD/YYYY" [formControl]="loginForm.controls['dob']" #dob></ion-datetime>
     </ion-item>
 
-    <div (click)="dob.click()">date</div>
+
+height:
+    <input [formControl]="loginForm.controls['heightft']" type="text" placeholder="Height" class="form-control UserLogIn_email"> ft
+    <input [formControl]="loginForm.controls['heightinch']" type="text" placeholder="Height" class="form-control UserLogIn_email"> Inch
+    <div *ngIf ="loginForm.controls['heightft'].touched">
+      <div *ngIf ="!loginForm.controls['heightft'].valid" class = "alert alert-danger">
+        <strong>height  is required</strong>
+      </div>
+    </div>
+    <input [formControl]="loginForm.controls['weight']" type="text" placeholder="Weight" class="form-control UserLogIn_email">
+    <div *ngIf ="loginForm.controls['weight'].touched">
+      <div *ngIf ="!loginForm.controls['weight'].valid" class = "alert alert-danger">
+        <strong>weight  is required</strong>
+      </div>
+    </div>
+
+    <ion-select  placeholder="Weight Unit" interface="action-sheet" [alertOptions]="unittext" [formControl]="loginForm.controls['weightunit']">
+      <ion-option value="lb">Lb</ion-option>
+      <ion-option value="kg">Kg</ion-option>
+
+    </ion-select>
+
+
 
 
 
