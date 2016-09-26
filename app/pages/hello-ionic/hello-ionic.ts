@@ -5,16 +5,32 @@ import {FoodsPage} from '../foods/foods'
 import {Facebook} from 'ionic-native'
 import {isArray} from "rxjs/util/isArray";
 import { Device } from 'ionic-native';
+import '../../../node_modules/chart.js/src/chart.js';
+import { BaseChartComponent } from 'ng2-charts/ng2-charts';
+
 
 
 @Component({
   templateUrl: 'build/pages/hello-ionic/hello-ionic.html',
   //providers:[FbProvider],
+  directives:[BaseChartComponent],
+  styles: [`
+    .chart {
+      display: block;
+      height:500px;
+    }
+  `],
+
 })
 export class HelloIonicPage {
   signupPage=SignUpPage;
   foodPage=FoodsPage;
   private  platform;
+
+
+  public pieChartLabels:string[] = ['Download Sales', 'In-Store Sales', 'Mail Sales'];
+  public pieChartData:number[] = [300, 500, 100];
+  public pieChartType:string = 'pie';
 
   constructor(platform:Platform) {
     this.platform = platform;
