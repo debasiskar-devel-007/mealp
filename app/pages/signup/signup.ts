@@ -3,7 +3,7 @@ import { NavController } from 'ionic-angular';
 import {FORM_DIRECTIVES, REACTIVE_FORM_DIRECTIVES} from '@angular/forms';
 import {FormBuilder, FormGroup, Validators,FormControl} from '@angular/forms';
 import {Http, Headers} from "@angular/http";
-import {ControlGroup} from "@angular/common";
+import {ControlGroup, Control} from "@angular/common";
 
 
 @Component({
@@ -23,7 +23,7 @@ export class SignUpPage {
         subTitle: 'Select your Weight Units'
   };
     this.loginForm = fb.group({
-      fullname: ["", Validators.required],
+      fullname: ["12", Validators.required],
       email: ["", SignUpPage.validateEmail],
       password: ["", Validators.required],
       heightft: ["", Validators.required],
@@ -62,8 +62,16 @@ export class SignUpPage {
 
   }
 
-  opendob(){
+    updatefname(){
     //$('.dob')
+        alert(92);
+        console.log(this.loginForm.value.fullname);
+        console.log(this.loginForm.controls['fullname']);
+        this.loginForm.value.fullname='uu7';
+        //this.loginForm.controls['fullname'].updateValue("uu7");
+      (<FormControl>this.loginForm.controls['fullname']).updateValue('uu7');
+
+        console.log(this.loginForm.value.fullname);
   }
 
 
