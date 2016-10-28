@@ -7,6 +7,7 @@ import {isArray} from "rxjs/util/isArray";
 import { Device } from 'ionic-native';
 import '../../../node_modules/chart.js/src/chart.js';
 import { BaseChartComponent } from 'ng2-charts/ng2-charts';
+import { Geolocation } from 'ionic-native';
 
 
 
@@ -26,6 +27,8 @@ export class HelloIonicPage {
   signupPage=SignUpPage;
   foodPage=FoodsPage;
   private  platform;
+  location:any;
+  locationar:Array<any>;
 
 
   public pieChartLabels:string[] = ['Download Sales', 'In-Store Sales', 'Mail Sales'];
@@ -95,5 +98,37 @@ export class HelloIonicPage {
       alert(x+'--'+Device.device[x]);
     }
   }
+  getlocation(){
+    Geolocation.getCurrentPosition().then((resp) => {
+      // resp.coords.latitude
+      alert('latitude'+resp.coords.latitude);
+      alert('longitude'+resp.coords.longitude);
+      // resp.coords.longitude
+    }).catch((error) => {
+      console.log('Error getting location', error);
+    });
+  }
+
+  watchlocation() {
+    this.location = Geolocation.watchPosition({maximumAge: 3000, timeout: 5000, enableHighAccuracy: true};
+  )
+    ;
+    this.location.subscribe((data) => {
+      // data can be a set of coordinates, or an error (if an error occurred).
+      // data.coords.latitude
+      // data.coords.longitude
+      //alert('latitude'+data.coords.latitude);
+      //alert('longitude'+data.coords.longitude);
+      this.locationar.push('latitude' + data.coords.latitude + 'longitude' + data.coords.longitude);
+    });
+  }
+
+
+  unsubscribe(){
+    this.location.unsubscribe();
+  }
+
 
 }
+
+

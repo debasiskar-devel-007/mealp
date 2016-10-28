@@ -26,7 +26,10 @@
   <button [navPush]="signupPage" >Create New Account</button>
   <button [navPush]="foodPage" >Go to Foods </button>
   <button (click)="login()" >Login With Facebook</button>
-  <button (click)="deviceinfo()" >Get Device Info</button>
+  <button (click)="login()" >Login With Facebook</button>
+  <button (click)="getlocation()" >getlocation</button>
+  <button (click)="watchlocation()" >watchlocation</button>
+  <button (click)="unsubscribe()" >unsubscribe</button>
 
 
 
@@ -39,5 +42,9 @@
               [chartType]="pieChartType"
               (chartHover)="chartHovered($event)"
               (chartClick)="chartClicked($event)"></base-chart>
+
+  <div id="mapscords">{{JSON.stringify(locationar)}}</div>
+
+
 
 </ion-content>
