@@ -110,16 +110,14 @@ export class HelloIonicPage {
   }
 
   watchlocation() {
-    this.location = Geolocation.watchPosition({maximumAge: 3000, timeout: 5000, enableHighAccuracy: true};
-  )
-    ;
+    this.location = Geolocation.watchPosition({maximumAge: 3000, timeout: 5000, enableHighAccuracy: true});
     this.location.subscribe((data) => {
       // data can be a set of coordinates, or an error (if an error occurred).
       // data.coords.latitude
       // data.coords.longitude
-      //alert('latitude'+data.coords.latitude);
-      //alert('longitude'+data.coords.longitude);
-      this.locationar.push('latitude' + data.coords.latitude + 'longitude' + data.coords.longitude);
+      alert('latitude'+data.coords.latitude);
+      alert('longitude'+data.coords.longitude);
+      //this.locationar.push('latitude' + data.coords.latitude + 'longitude' + data.coords.longitude);
     });
   }
 
